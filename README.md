@@ -1,1 +1,1 @@
-# BarberShop
+# RubySchool_Lesson_24
