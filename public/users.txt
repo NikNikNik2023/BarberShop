@@ -1,3 +1,4 @@
 User: ivan, Phone: 1231235, Date and time: 123654, Persons: Gus Fring, Color: #dbadff
 User: ivan, Phone: 1231235, Date and time: 123654, Persons: Jessie Pinkman, Color: #51b749
 User: ivan, Phone: 1231235, Date and time: 123654, Persons: Jessie Pinkman, Color: #51b749
+User: ivan, Phone: 4568521258, Date and time: 12.23.25, Persons: Gus Fring, Color: #7bd148
