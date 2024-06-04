@@ -8,3 +8,4 @@ User: ivan, Phone: 64516, Date and time: 6415641, Persons: Walter White, Color: 
 User: ygff, Phone: 641361, Date and time: 1258622, Persons: Jessie Pinkman, Color: #5484ed
 User: ygff, Phone: 641361, Date and time: 1258622, Persons: Jessie Pinkman, Color: #5484ed
 User: ygff, Phone: 641361, Date and time: 1258622, Persons: Jessie Pinkman, Color: #5484ed
+User: boris, Phone: 1236522, Date and time: 25.05.2024 15.05, Persons: Walter White, Color: #5484ed

@@ -3,6 +3,12 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
+def get_db
+	db = SQLite3::Database.new 'barbershop.db'
+	db.results_as_hash = true
+	return db
+end
+
 configure do
 	db = SQLite3::Database.new 'barbershop.db'
 	db.execute 'CREATE TABLE IF NOT EXISTS
@@ -36,6 +42,8 @@ get '/contacts' do
 end
 
 get '/showusers' do
+	db = get_db
+	@results = db.execute 'select * from Users order by id desc'
 	erb :showusers
 end
 
@@ -56,29 +64,6 @@ post '/visit' do
 		return erb :visit
 	end
 
-	# hh.each do |key, value|
-	# 	if params[key] == ''
-	# 		@error = value
-	# 		return erb :visit
-	# 	end
-	# end
-
-	# if @username == ''
-	# 	@error = 'Введите имя'
-	# end
-	#
-	# if @phone == ''
-	# 	@error = 'Введите номер телефона'
-	# end
-	#
-	# if @datetime == ''
-	# 	@error = 'Введите дату и время'
-	# end
-	#
-	# if @error != ''
-	# 	return erb :visit
-	# end
-
 	@title = 'Спасибо!'
 	@message = "Уважаемый #{@username}, телефон #{@phone}, мы вас ждём #{@datetime}, ваш парикмахер #{@persons}, выбранный цвет окраски волос: #{@color}"
 
@@ -91,12 +76,6 @@ post '/visit' do
 	f.close
 
 	erb :message
-end
-
-def get_db
-	db = SQLite3::Database.new 'barbershop.db'
-	db.results_as_hash = true
-	return db
 end
 
 post '/contacts' do
