@@ -1,24 +1,24 @@
 <table class="table table-bordered border-primary table-hover">
-  <thead>
-      <tr>
-        <th>Номер</th>
-        <th>Имя</th>
-        <th>Телефон</th>
-        <th>Дата и время записи</th>
-        <th>Парикмахер</th>
-        <th>Цвет окраски волос</th>
-      </tr>
-  </thead>
-  <tbody>
-      <% @results.each do |row| %>
-            <tr>
-                <td><%= row['id'] %></td>
-                <td><%= row['username'] %></td>
-                <td><%= row['phone'] %></td>
-                <td><%= row['datestamp'] %></td>
-                <td><%= row['persons'] %></td>
-                <td><%= row['color'] %></td>
-            </tr>
-  <% end %>
-  </tbody>
+    <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Имя</th>
+            <th>Телефон</th>
+            <th>Дата и время записи</th>
+            <th>Парикмахер</th>
+            <th>Цвет окраски волос</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @results.each do |row| %>
+              <tr>
+                  <td><%= row['id'] %></td>
+                  <td><%= row['username'] %></td>
+                  <td><%= row['phone'] %></td>
+                  <td><%= row['datestamp'] %></td>
+                  <td><%= row['barbers'] %></td>
+                  <td><%= row['color'] %></td>
+              </tr>
+        <% end %>
+    </tbody>
 </table>

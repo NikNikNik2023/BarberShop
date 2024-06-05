@@ -3,6 +3,17 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
+def is_barber_exists? db, name
+	db.execute('select * from Barbers where name=?', [name]).length > 0
+end
+
+def seed_db db, barbers
+	barbers.each do |barber|
+		if !is_barber_exists? db, barber
+			db.execute 'insert into Barbers (name) values (?)', [barber]
+		end
+	end
+end
 def get_db
 	db = SQLite3::Database.new 'barbershop.db'
 	db.results_as_hash = true
@@ -18,10 +29,20 @@ configure do
 		"username"	TEXT,
 		"phone"	TEXT,
 		"datestamp"	TEXT,
-		"persons"	TEXT,
+		"barbers"	TEXT,
 		"color"	TEXT,
 		PRIMARY KEY("id" AUTOINCREMENT)
 	)'
+
+	db.execute 'CREATE TABLE IF NOT EXISTS
+	"Barbers"
+	(
+		"id"	INTEGER,
+		"name"	TEXT,
+		PRIMARY KEY("id" AUTOINCREMENT)
+	)'
+
+	seed_db db, ['Jessie Pinkman', 'Walter White', 'Gus Fring', 'Mike Ehrmantraut']
 end
 
 get '/' do
@@ -51,7 +72,7 @@ post '/visit' do
 	@username = params[:username]
 	@phone = params[:phone]
 	@datetime = params[:datetime]
-	@persons = params[:persons]
+	@barbers = params[:barbers]
 	@color = params[:color]
 
 	hh = { :username => 'Введите имя',
@@ -65,14 +86,14 @@ post '/visit' do
 	end
 
 	@title = 'Спасибо!'
-	@message = "Уважаемый #{@username}, телефон #{@phone}, мы вас ждём #{@datetime}, ваш парикмахер #{@persons}, выбранный цвет окраски волос: #{@color}"
+	@message = "Уважаемый #{@username}, телефон #{@phone}, мы вас ждём #{@datetime}, ваш парикмахер #{@barbers}, выбранный цвет окраски волос: #{@color}"
 
 	db = get_db
 	db.execute 'insert into Users (username, phone, datestamp, persons, color)
-				values (?, ?, ?, ?, ?)', [@username, @phone, @datetime, @persons, @color]
+				values (?, ?, ?, ?, ?)', [@username, @phone, @datetime, @barbers, @color]
 
 	f = File.open './public/users.txt', 'a'
-	f.write "User: #{@username}, Phone: #{@phone}, Date and time: #{@datetime}, Persons: #{@persons}, Color: #{@color}\n"
+	f.write "User: #{@username}, Phone: #{@phone}, Date and time: #{@datetime}, Persons: #{@barbers}, Color: #{@color}\n"
 	f.close
 
 	erb :message
