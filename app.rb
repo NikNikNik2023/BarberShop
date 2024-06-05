@@ -90,7 +90,7 @@ post '/visit' do
 		return erb :visit
 	end
 
-	@title = 'Спасибо!'
+	@title = 'Спасибо, вы записались!'
 	@message = "Уважаемый #{@username}, телефон #{@phone}, мы вас ждём #{@datetime}, ваш парикмахер #{@barber}, выбранный цвет окраски волос: #{@color}"
 
 	db = get_db

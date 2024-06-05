@@ -10,3 +10,4 @@ User: ygff, Phone: 641361, Date and time: 1258622, Persons: Jessie Pinkman, Colo
 User: ygff, Phone: 641361, Date and time: 1258622, Persons: Jessie Pinkman, Color: #5484ed
 User: boris, Phone: 1236522, Date and time: 25.05.2024 15.05, Persons: Walter White, Color: #5484ed
 User: Roman, Phone: 8521236, Date and time: 25.06. 15.25, Persons: Mike Ehrmantraut, Color: #51b749
+User: Dima, Phone: 987456, Date and time: 14.03. 12.00, Persons: Gus Fring, Color: #fbd75b
