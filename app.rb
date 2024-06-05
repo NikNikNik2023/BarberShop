@@ -29,7 +29,7 @@ configure do
 		"username"	TEXT,
 		"phone"	TEXT,
 		"datestamp"	TEXT,
-		"barbers"	TEXT,
+		"barber"	TEXT,
 		"color"	TEXT,
 		PRIMARY KEY("id" AUTOINCREMENT)
 	)'
@@ -72,7 +72,7 @@ post '/visit' do
 	@username = params[:username]
 	@phone = params[:phone]
 	@datetime = params[:datetime]
-	@barbers = params[:barbers]
+	@barber = params[:barber]
 	@color = params[:color]
 
 	hh = { :username => 'Введите имя',
@@ -86,14 +86,14 @@ post '/visit' do
 	end
 
 	@title = 'Спасибо!'
-	@message = "Уважаемый #{@username}, телефон #{@phone}, мы вас ждём #{@datetime}, ваш парикмахер #{@barbers}, выбранный цвет окраски волос: #{@color}"
+	@message = "Уважаемый #{@username}, телефон #{@phone}, мы вас ждём #{@datetime}, ваш парикмахер #{@barber}, выбранный цвет окраски волос: #{@color}"
 
 	db = get_db
 	db.execute 'insert into Users (username, phone, datestamp, persons, color)
-				values (?, ?, ?, ?, ?)', [@username, @phone, @datetime, @barbers, @color]
+				values (?, ?, ?, ?, ?)', [@username, @phone, @datetime, @barber, @color]
 
 	f = File.open './public/users.txt', 'a'
-	f.write "User: #{@username}, Phone: #{@phone}, Date and time: #{@datetime}, Persons: #{@barbers}, Color: #{@color}\n"
+	f.write "User: #{@username}, Phone: #{@phone}, Date and time: #{@datetime}, Persons: #{@barber}, Color: #{@color}\n"
 	f.close
 
 	erb :message
