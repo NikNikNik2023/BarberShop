@@ -20,6 +20,11 @@ def get_db
 	return db
 end
 
+before do
+	db = get_db
+	@barbers = db.execute 'select * from Barbers'
+end
+
 configure do
 	db = SQLite3::Database.new 'barbershop.db'
 	db.execute 'CREATE TABLE IF NOT EXISTS
